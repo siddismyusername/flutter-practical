@@ -1,6 +1,6 @@
 class Configurations {
   List<Map<String, String>> credentials = [
-    {'userid': 'vit1@vit.edu', 'password': 'Vit@1234'},
+    {'userid': 'vit@vit.edu', 'password': 'Vit@1234'},
     {'userid': '1321a@viit.ac.in', 'password': 'Vit@1321a'},
   ];
   void add(Map<String, String> data) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/register_page.dart';
 import 'package:login_page/utility.dart';
-import 'content.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,13 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
       _userIDErrorText = _setUserIDErrorText(_userID.text);
       _passwordErrorText = _setPasswordErrorText(_password.text);
     });
-    
+
     if (_userIDErrorText == null && _passwordErrorText == null) {
       // Proceed with login logic
       //
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Content()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     }
   }
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _userID,
                 builder: (context, value, child) {
@@ -125,14 +125,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     onChanged: (val) {
                       if (_userIDErrorText != null) {
-                        setState(() => _userIDErrorText = _setUserIDErrorText(val));
+                        setState(
+                          () => _userIDErrorText = _setUserIDErrorText(val),
+                        );
                       }
                     },
                   );
                 },
               ),
               const SizedBox(height: 16),
-              
+
               TextField(
                 controller: _password,
                 obscureText: _obscurePassword,
@@ -141,7 +143,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   prefixIcon: const Icon(Icons.lock_outline),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                      _obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                     ),
                     onPressed: () {
                       setState(() => _obscurePassword = !_obscurePassword);
@@ -156,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               FilledButton(
                 onPressed: validate,
                 style: FilledButton.styleFrom(
@@ -171,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -183,7 +187,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const RegisterPage()),
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
                       );
                     },
                     child: const Text('Sign Up'),
